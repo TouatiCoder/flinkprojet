@@ -1,0 +1,85 @@
+import { Input } from "../../../ui/input/input";
+import Button from "../../../ui/button/Button";
+import { X } from "lucide-react";
+
+interface AddRegProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+function AddRegion({ isOpen, onClose }: AddRegProps) {
+  return (
+    <>
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 transition-opacity"
+          onClick={onClose}
+        />
+      )}
+
+      <div 
+        className={`fixed top-0 right-0 h-full w-96 bg-white dark:bg-slate-900 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-white/[0.05]">
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Créer un Pays</h2>
+          <button 
+            onClick={onClose}
+            className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nom</label>
+            <Input placeholder="Ex: Sidi Yahya" className="dark:bg-slate-800 dark:border-gray-700 dark:text-white" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Nom de la ville
+            </label>
+            <select className="flex h-11 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 dark:border-gray-700 dark:bg-slate-800 dark:text-white transition-colors cursor-pointer">
+              <option value="" disabled selected>Sélectionner une ville</option>
+              <option value="casablanca">Casablanca</option>
+              <option value="rabat">Rabat</option>
+              <option value="sidi_yahya">Oujda</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Latitude</label>
+            <Input type="number" placeholder="Ex: 31.7917" className="dark:bg-slate-800 dark:border-gray-700 dark:text-white" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Longitude</label>
+            <Input type="number" placeholder="Ex: -7.0926" className="dark:bg-slate-800 dark:border-gray-700 dark:text-white" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Compteur Search</label>
+            <Input type="number" placeholder="Ex: 0" className="dark:bg-slate-800 dark:border-gray-700 dark:text-white" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Compteur Publications</label>
+            <Input type="number" placeholder="Ex: 0" className="dark:bg-slate-800 dark:border-gray-700 dark:text-white" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Statut</label>
+            <select className="flex h-11 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 dark:border-gray-700 dark:bg-slate-800 dark:text-white transition-colors">
+                <option value="1">Actif</option>
+                <option value="0">Inactif</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="p-4 border-t border-gray-100 dark:border-white/[0.05] flex gap-3">
+          <Button variant="outline" className="flex-1" onClick={onClose}>Annuler</Button>
+          <Button variant="primary" className="flex-1">Create Region</Button>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default AddRegion;
